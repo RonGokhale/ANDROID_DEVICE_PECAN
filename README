@@ -1,0 +1,103 @@
+For those who may be interested in building a pecan OMGB nightyl ROM from source as a learning experience or to customize for your personal preferences, this guide should help you get started.
+
+ 
+
+First of all, you will need a properly configured Linux environment. This post does not cover that, so you will need to look elsewhere (search is your friend) for help if you need help to get that setup.
+
+ 
+
+The following are the commands you need (in bold) with a brief comment (# lines) before each step.
+
+ 
+
+# create working directory somewhere (you will need about 10GB for building, I would recommend 15GB or more for growth)
+
+# you can call it whatever you want, I am just using OMGB as an example
+
+# I will later set up an env variable and refer to this directory as $OMGB_DIR
+
+mkdir OMGB
+
+ 
+
+# change to working directory
+
+cd OMGB
+
+ 
+
+# setup an environment variable for this directory called $OMGB_DIR
+
+# you can also skip this and use full or relative paths to the appropriate directories
+
+export OMGB_DIR=`pwd`
+
+ 
+
+# initialize repo from github remote
+
+repo init -u git://github.com/cipsgokhle/manifest.git
+
+ 
+
+it will come with my nightly device folder and less to download. so you don't need to clone device folder
+
+ 
+
+# modify manifest for revision mismatches to avoid sync failures
+
+# (change revision="master' to revision="gingerbread" for external/v8 and external/webkit projects)
+
+# feel free to use your preferred editor, nano, emacs, ed, gedit, or whatever
+
+vi .repo/manifest.xml
+
+ 
+
+# pull source from remote repos to local source tree
+
+repo sync
+
+ 
+
+# go to the device tree
+
+cd device/lge/pecan
+
+ 
+
+# set up device specific makefiles
+
+./setup-makefiles.sh
+
+# prepare to copy device proprietary files to vendor tree
+
+# setup environment for build
+
+. build/envsetup.sh
+
+ 
+
+# choose your lunch menu
+
+ 
+
+lunch OMGB_pecan-eng
+
+ 
+
+# build the ROM (you can add the appropriate thread count if desired. I normally use 'make -j8 bacon')
+
+make bacon
+
+ 
+
+If none of this makes sense, you probably need to do some additional reading/searching. Hopefully, there are not too many typos/errors here, and I apologize in advance if I missed something
+
+ 
+
+As always, please help each other with issues, suggestions, improvements, etc.
+
+ 
+
+Let the wild rumpus begin.
