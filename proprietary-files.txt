@@ -7,7 +7,7 @@ lib/liba2dp.so
 lib/libaudioeq.so
 
 # Bluetooth
-bin/BCM4325D1_004.002.004.0218.0248.hcd
+bin/BCM43291A0_003.001.013.0060.Pecan.hcd
 
 # Camera
 lib/liboemcamera.so
